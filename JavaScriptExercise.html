@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+		<title>Bet Bright - JavaScript Exercise</title> 
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<style type="text/stylesheet">
+			@-webkit-viewport   { width: device-width; }
+			@-moz-viewport      { width: device-width; }
+			@-ms-viewport       { width: device-width; }
+			@-o-viewport        { width: device-width; }
+			@viewport           { width: device-width; }
+		</style>
+
+		<!-- Load Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+		<!-- CSS -->
+		<style>
+			*{
+			    font-family: 'Open Sans', sans-serif;
+			}
+			html {
+			    height: 100%;
+			}
+			body {
+			    height: 100%;
+			}
+			.clear {
+				clear: both;
+			}
+			.main-container {
+				width: 750px;
+				height: 100%;
+				margin-left: auto;
+				margin-right: auto;
+				text-align: center;
+				margin-top: 2em;
+			}
+			label {
+				font-weight: bold;
+				display: block;
+				margin-bottom: 1em;
+			}
+			.buttons {
+				text-transform: uppercase;
+				border: none;
+				background: #0F7895;
+				color: #fff;
+				font-size: 1.2em;
+				font-weight: bold;
+				padding: 0.5em 2em;
+			    margin-right: 2em;
+			    outline: none;
+			}
+			.buttons:hover {
+				color: #000;
+				cursor: pointer;
+			}
+			#images-wrapper {
+				margin-top: 1em;
+			}
+			.animals {
+				width: 100%;
+				margin-bottom: 1em;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="main-container">
+			<label>Choose an Animal:</label>
+			<button type="button" id="cow" class="buttons" onclick="getAnimalImages('cow')">Cow</button>
+			<button type="button" id="dog" class="buttons" onclick="getAnimalImages('dog')">Dog</button>
+			<button type="button" id="girafe" class="buttons" onclick="getAnimalImages('girafe')">Girafe</button>
+			<div id="images-wrapper"></div>
+		</div>
+
+		<script>
+			function handleResponse(data) {
+				if(data.length < 0 || data.items.length < 0) {
+					alert("No animals found");
+				}
+
+				var imagesLink = "";
+
+			    for(var i=0; i<5; i++) {
+			    	imagesLink += '<img class="animals" src="' + data.items[i].media.m + '" alt="animal">'; 
+			    	
+			    }
+
+			    document.getElementById("images-wrapper").innerHTML = imagesLink;
+			}
+
+			function getAnimalImages(animal) {
+				var script = document.createElement("script");
+				script.src = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=handleResponse&tags=" + animal + "&tagmode=any&format=json";
+				document.head.appendChild(script);
+				script.parentNode.removeChild(script);
+			}
+
+		</script>
+	</body>
+</html>

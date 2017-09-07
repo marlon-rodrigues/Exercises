@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+		<title>Bet Bright - Design Markup Test</title> 
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<style type="text/stylesheet">
+			@-webkit-viewport   { width: device-width; }
+			@-moz-viewport      { width: device-width; }
+			@-ms-viewport       { width: device-width; }
+			@-o-viewport        { width: device-width; }
+			@viewport           { width: device-width; }
+		</style>
+
+		<!-- Load Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+		<!-- Load Font Awesome for Icons -->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- CSS -->
+		<style>
+			*{
+			    font-family: 'Open Sans', sans-serif;
+			}
+			html {
+			    height: 100%;
+			}
+			body {
+			    height: 100%;
+			}
+			.clear {
+				clear: both;
+			}
+			.main-container {
+				width: 750px;
+				height: 100%;
+				margin-left: auto;
+				margin-right: auto;
+				display: table;
+				-webkit-perspective: 750px;
+			    -moz-perspective: 750px;
+			    -o-perspective: 750px;
+			    perspective: 750px;
+			}
+			.main-container .main-container-wrapper {
+				display: table-cell;
+			    height: 100%;
+			    vertical-align: middle;
+			     -webkit-transition: -webkit-transform 1s;
+			    -moz-transition: -moz-transform 1s;
+			    -o-transition: -o-transform 1s;
+			    transition: transform 1s;
+			    -webkit-transform-style: preserve-3d;
+			    -moz-transform-style: preserve-3d;
+			    -o-transform-style: preserve-3d;
+			    transform-style: preserve-3d;
+			    -webkit-transform-origin: 50% 50%;
+			}
+			.card-container {
+				box-shadow: 0px 0px 10px 2px #f1f1f1;
+				border: 1px solid #f1f1f1;
+				height: 221px;
+				overflow: hidden;
+			}
+			#card-front .card-image {
+				float: left;
+				width: 33%;
+				background-image: url('https://livecasino.betbright.com/upload/casino/games/lj7hh6fckjxahusq_thumb.jpg');
+				height: 221px;
+			    background-repeat: no-repeat;
+			    background-size: cover;
+			    background-position: center right;
+			}
+			#card-front .card-image img {
+				width: 100%;
+			}
+			.card-body {
+				float: left;
+				width: 67%;
+				position: relative;
+				overflow: hidden;
+			}
+			.card-body .body-call-out {
+				position: absolute;
+			    right: -30%;
+			    transform: rotate(40deg);
+			    background: #FFB200;
+			    top: 1em;
+			    width: 80%;
+			    text-align: center;
+			    font-size: 1.4em;
+			    font-weight: bold;
+			    text-transform: uppercase;
+			    padding: 0.1em;
+			    box-shadow: 0px 5px 5px #f1f1f1;
+			}
+			.card-body .card-body-wrapper {
+				padding: 1em 1em;
+			}
+			.card-body-wrapper .body-title {
+				color: #0F7895;
+				text-transform: uppercase;
+				padding-top: 0.3em;
+			}
+			.card-body-wrapper .body-title h1 {
+				font-weight: normal;
+				font-size: 1.25em;
+				margin: 0em;
+				line-height: 0.4em;
+			}
+			.card-body-wrapper .body-title h2 {
+				font-size: 1.7em;
+				margin: 0em;
+			}
+			#card-front .card-body-wrapper .body-title:hover {
+				color: #005F7C;
+				cursor: pointer;
+			}
+			.card-body-wrapper .body-content {
+				margin-top: 0.6em;
+				font-size: 0.9em;
+			}
+			.card-body-wrapper .body-content span {
+				font-weight: bold;
+				text-transform: uppercase;
+				margin-top: 0.5em;
+			}
+			.card-body-wrapper .body-content p {
+				margin: 0em 0em 0.5em;
+			}
+			.card-body-wrapper .body-buttons {
+				margin-top: 0.7em;
+				position: relative;
+			}
+			.card-body-wrapper .body-buttons button {
+				width: 31%;
+				text-transform: uppercase;
+				border: none;
+				box-shadow: none;
+				outline: none;
+				font-size: 0.8em;
+				padding: 0.7em 0em;
+				margin-right: 0.5em;
+				position: relative;
+			}
+			.card-body-wrapper .body-buttons button:hover {
+				cursor: pointer;
+				font-weight: bold;
+			}
+			#card-front .card-body-wrapper .body-buttons button:first-child {
+				text-transform: none;
+			}
+			.card-body-wrapper .body-buttons button.button-gray {
+				background: #E0E1E4;
+			}
+			.card-body-wrapper .body-buttons button.button-orange {
+				background: #FFB200;
+			}
+			.card-body-wrapper .body-buttons button i {
+				position: absolute;
+			    left: 2em;
+			    top: 1em;
+			}
+			#card-back {
+				display: none;
+				 -webkit-transform: rotateY( 180deg );
+			    -moz-transform: rotateY( 180deg );
+			    -o-transform: rotateY( 180deg );
+			    transform: rotateY( 180deg );
+			}
+			#card-back .card-body {
+				width: 100%;
+				float: none;
+			}
+			#card-back .card-body-wrapper .body-content span {
+				text-transform: none;
+			}
+			#card-back .card-body-wrapper .body-content p {
+				max-height: 65px;
+				overflow-y: scroll;
+				font-size: 0.85em;
+				margin-bottom: 1.5em;
+			}
+			#card-back .card-body-wrapper .body-buttons button {
+				width: 20%;
+			}
+			.main-container-wrapper.flipped {
+			    -webkit-transform: rotateY( 180deg );
+			    -moz-transform: rotateY( 180deg );
+			    -o-transform: rotateY( 180deg );
+			    transform: rotateY( 180deg );
+			}
+
+			@media(min-width: 601px) and (max-width: 768px){
+				.main-container {
+				    width: 600px;
+				    -webkit-perspective: 600px;
+				    -moz-perspective: 600px;
+				    -o-perspective: 600px;
+				    perspective: 600px;
+				}
+				.card-body-wrapper .body-content {
+					font-size: 0.8em;
+				}
+				.card-body-wrapper .body-buttons {
+					margin-top: 1.1em;
+				}
+				.card-body-wrapper .body-buttons button {
+					width: 30%;
+					font-size: 0.7em;
+				}
+				#card-front .card-image {
+					background-position: center;
+				}
+			}
+
+			@media(max-width: 600px){
+				.main-container {
+				    width: 320px;
+				    -webkit-perspective: 320px;
+				    -moz-perspective: 320px;
+				    -o-perspective: 320px;
+				    perspective: 320px;
+				}
+				.card-container {
+					height: auto;
+				}
+				#card-front .card-image {
+					width: 100%;
+					float: none;
+					display: block;
+				}
+				.card-body {
+					width: 100%;
+					float: none;
+					display: block;
+				}
+				.card-body .body-call-out {
+					top: 0.5em;
+				}
+				.card-body-wrapper .body-content {
+					font-size: 0.8em;
+				}
+				.card-body-wrapper .body-buttons button.button-gray {
+					width: 48.1%;
+					margin-top: 3.5em;
+				}
+				.card-body-wrapper .body-buttons button.button-gray:nth-child(2) {
+					margin-right: 0em;
+				}
+				.card-body-wrapper .body-buttons button.button-orange {
+					width: 100%;
+					position: absolute;
+					top: 0;
+				}
+				#card-back .card-body-wrapper .body-buttons button {
+					width: 100%;
+				}
+				#card-back .card-body-wrapper .body-content p {
+					max-height: 110px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main-container">
+			<div id="card-flipper" class="main-container-wrapper">
+
+				<div id="card-front" class="card-container">
+					<div class="card-image"></div>
+					<div class="card-body">
+						<section class="body-call-out">New</section>
+						<div class="card-body-wrapper">
+							<section class="body-title">
+								<h1>BetBright Casino</h1>
+								<h2>$1000 Bonus</h2>
+							</section>
+							<section class="body-content">
+								<span>Join</span>
+								<p>Open an account with us, it takes just a few minutes</p>
+								<span>Deposit</span>
+								<p>Place a single bet up to $30 on any sport in our Sportsbook</p>
+							</section>
+							<section class="body-buttons">
+								<button type="button" class="button-gray" onclick="flipCard()">
+									<i class="fa fa-retweet" aria-hidden="true"></i>Ts&Cs
+								</button>
+								<button type="button" class="button-gray">Find Out More</button>
+								<button type="button" class="button-orange">Join Now</button>
+							</section>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<div id="card-back" class="card-container">
+					<div class="card-body">
+						<div class="card-body-wrapper">
+							<section class="body-title">
+								<h2>Casino Bonus</h2>
+							</section>
+							<section class="body-content">
+								<span>Terms & Conditions</span>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie vehicula odio, vitae finibus leo finibus et. Curabitur rutrum ligula finibus nisi pretium venenatis. Proin at tortor posuere, sollicitudin felis ultricies, dapibus ligula. Phasellus nec ipsum quis mi hendrerit malesuada. Suspendisse potenti. Fusce dictum, turpis eget porta tempor, ipsum velit egestas nisl, sit amet egestas orci odio nec magna. Nullam dapibus nulla eget lectus pretium, sed consectetur metus malesuada. Aenean elementum blandit quam ac lobortis. Aenean faucibus aliquam nulla et pharetra. Nullam ex enim, facilisis et porta ac, lacinia non orci. Duis rhoncus consequat dolor, a rutrum lectus luctus quis. Integer porta efficitur justo, eget tempus elit eleifend ut. Sed sit amet leo eu sapien condimentum semper. Morbi efficitur augue leo, id fringilla ex ornare id. Quisque sollicitudin mi risus, nec sagittis est vulputate eget. Integer enim neque, auctor quis quam sit amet, imperdiet tempus nisl. Phasellus et sem a nisl viverra accumsan. Nam vitae massa accumsan, efficitur quam et, suscipit nulla. Fusce finibus, augue id interdum finibus, nisi elit faucibus est, ac dictum nisi quam sed sapien. Vestibulum quis fringilla ipsum. Aliquam eleifend nunc non libero facilisis, sit amet cursus turpis rhoncus. Vivamus in tristique velit, pretium sagittis tellus. Mauris at arcu at nisl porta consectetur. Quisque tincidunt ante eu volutpat egestas. Praesent posuere, massa volutpat hendrerit aliquam, enim elit pellentesque purus, in scelerisque tellus sem eu nisl. Duis molestie elementum arcu id tempor. Vestibulum et urna massa. Donec rutrum placerat cursus. Nulla facilisi. Maecenas magna ligula, lacinia et ligula varius, blandit ultricies ligula. Maecenas non eleifend enim. Mauris in nisl suscipit, ultricies turpis vitae, aliquam nunc. Nunc egestas, nisi eu placerat fringilla, tellus turpis imperdiet tellus, non posuere orci ligula in libero. Quisque orci velit, porttitor ut suscipit id, interdum tempus arcu. Mauris vestibulum consequat nisi non tristique. Maecenas at suscipit purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam tincidunt quam at neque commodo pellentesque. Donec augue neque, auctor et libero vitae, sodales venenatis massa. Phasellus non arcu dapibus, ornare velit quis, semper purus. Proin elementum pretium nibh at facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut egestas orci eget fermentum lobortis. Morbi faucibus tellus eros, nec elementum dolor euismod sit amet. Nam blandit leo ut risus luctus, quis bibendum ante interdum. Nullam viverra tincidunt nisi, eget fermentum enim ornare nec. Donec non pharetra lacus, at scelerisque nisl. Mauris ut ante et justo pellentesque pharetra. Cras ante diam, consequat nec nunc et, iaculis tincidunt odio. Phasellus urna elit, aliquam vel arcu eget, iaculis porta sapien. Maecenas id felis lacus.
+								</p>
+							</section>
+							<section class="body-buttons">
+								<button type="button" class="button-gray" onclick="flipCard()">
+									<i class="fa fa-retweet" aria-hidden="true"></i>Back
+								</button>
+								<button type="button" class="button-orange">Join Now</button>
+							</section>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<script>
+			function flipCard() {
+				var front = document.getElementById("card-front");
+				var back = document.getElementById("card-back");
+				var cardContainer = document.getElementById("card-flipper");
+
+				if(cardContainer.classList.contains("flipped")) {
+					cardContainer.classList.remove("flipped");
+				} else {
+					cardContainer.classList.add("flipped");
+				}
+
+				if(front.style.display == 'none') {
+					front.style.display = 'block';
+					back.style.display = 'none';
+				} else {
+				    front.style.display = 'none';
+				    back.style.display = 'block';
+				}
+			}
+		</script>
+	</body>
+</html>
