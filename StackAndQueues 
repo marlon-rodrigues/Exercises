@@ -1,0 +1,205 @@
+/* QUESTION 3.1 - Describe how you could use a single array to implement 3 stack 
+Answer: For stack 1, we will use [0, n/3)
+        For stack 2, we will use [n/3, 2n/3)
+        For stack 3, we will use [2n/3, n)
+*/
+class FixedMultiStack {
+	private int numberOfStacks = 3;
+	private int stackCapacity;
+	private int[] values;
+	private int[] sizes;
+
+	public FixedMultiStack(int stackSize) {
+		stackCapacity = stackSize;
+		values = new int[stackSize * numberOfStacks];
+		sizes = new int[numberOfStacks];
+	}
+
+	// Push value onto stack
+	public void push(int stackNum, int value) throws FullStackException {
+		if(isFull(stackNum)) {
+			throw new FullStackException();
+		}
+
+		// Increment stack pointer and then update top value
+		sizes[stackNum]++;
+		values[indexOfTop(stackNum)] = value;
+	}
+
+	// Pop item from stack
+	public int pop(int stackNum) {
+		if(isEmpty(stackNum)) {
+			throw new FullStackException();
+		}
+
+		int topIndex = indexOfTop(stackNum);
+		int value = values[topIndex]; // Get top
+		values[topIndex] = 0; // Clear
+		sizes[stackNum]--;
+
+		return value;
+	}
+
+	// Return top element
+	public int peek(int stackNum) {
+		if(isEmpty(stackNum)) {
+			throw new EmptyStackException();
+		}
+
+		return values[indexOfTop(stackNum)];
+	}
+
+	// Return if stack is empty
+	public boolean isEmpty(int stackNum) {
+		return sizes[stackNum] == 0;
+	}
+
+	// Return if stack is full
+	public boolean isFull(int stackNum) {
+		return sizes[stackNum] == stackCapacity;
+	}
+
+	// Return index of top of the stack
+	private int indexOfTop(int stackNum) {
+		int offset = stackNum * stackCapacity;
+		int size = sizes[stackNum];
+		return offset + size - 1;
+	}
+}
+
+/* QUESTION 3.2 - Design a stack which, in addition to push and pop, has a function min which returns
+   the minimum element. Push, Pop and Min should operate in O(1) time.
+   Answer: create another stack that holds the min values */
+public class StackWithMin extends Stack<integer> {
+	Stack<Integer> s2;
+
+	public StackWithMin2() {
+		s2 = new Stack<Integer>();
+	}
+
+	public void push(int value) {
+		if(value <= min()) {
+			s2.push(value);
+		}
+		super.push(value);
+	}
+
+	public int pop() {
+		int value = super.pop();
+		if(value == min()) {
+			s2.pop();
+		}
+
+		return value;
+	}
+
+	public int min() {
+		if(s2.isEmpty()) {
+			return Integer.MAX_VALUE;
+		} else {
+			return s2.peek();
+		}
+	}
+}
+
+/* QUESTION 3.3 - Implement SetOfStacks structure that is composed of several stacks and should create 
+   a new stack once the previous one exceeds capacity. */
+ class SetOfStacks {
+ 	ArrayList<Stack> stacks = new ArrayList<Stack>();
+ 	public int capacity;
+
+ 	public SetOfStacks(int capacity) {
+ 		this.capacity = capacity;
+ 	}
+
+ 	public Stack getLastStack() {
+ 		if(stacks.size() == 0) return null;
+ 		return stacks.get(stacks.size() - 1);
+ 	}
+
+ 	public void push(int v) {
+ 		Stack last = getLastStack();
+
+ 		if(last != null && !last.isFull()) { // Add to last stack
+ 			last.push(v);
+ 		} eslse { // Must create new stack
+ 			Stack stack = new Stack(capacity);
+ 			stack.push(v);
+ 			stacks.add(stack);
+ 		}
+ 	}
+
+ 	public void pop() {
+ 		Stack last = getLastStack();
+
+ 		if(last == null) throw new EmptyStackException();
+ 		int v = last.pop();
+ 		if (last.size == 0) stacks.remove(stacks.size() - 1);
+
+ 		return v;
+ 	}
+
+ 	public boolean isEmpty() {
+ 		Stack last = getLastStack();
+ 		return last == null || last.isEmpty();
+ 	}
+ }
+
+ /* QUESTION 3.4 - Implement a MyQueue class which implements a queue using two stacks */
+public class MyQueue<T> {
+	Stack<T> stackNewest, stackOldest;
+
+	public MyQueue() {
+		stackNewest = new Stack<T>;
+		stackOldest = new Stack<T>;
+	}
+
+	public int size() {
+		return stackNewest().size() + stackOldest.size();
+	}
+
+	public void add(T value) {
+		// Push onto stackNewest, which always has the newest elements on top
+		stackNewest.push(value);
+	}
+
+	// Move elements from stackNewest into stackOldest. 
+	private void shiftStacks() {
+		if(stackOldest.isEmpty()) {
+			while(!stackNewest.isEmpty()) {
+				stackOldest.push(stackNewest.pop());
+			}
+		}
+	}
+
+	public T peek() {
+		shiftStacks(); // Ensure stackOldest has the current elements
+		return stackOldest.peek(); // Retrieve the oldest item
+	}
+
+	public T remove() {
+		shiftStacks(); // Ensure stackOldest has the current elements
+		return stackOldest.pop(); // Pop the oldest item
+	}
+}
+
+/* QUESTION 3.5 - Write a program to sort a stack such that the smallest items are on the top.
+   You can use an additional temporary stack, but you may not copy the elements into another 
+   DT (suc as an array). 
+*/
+void sort(Stack<Integer> s) {
+	Stack<Integer> r = new Stack<Integer>();
+	while(!s.isEmpty()) {
+		// Insert each element in s in sorted order into r 
+		int tmp = s.pop();
+		while(!r.isEmpty() && r.peek() > tmp) {
+			s.push(r.pop());
+		}
+		r.push(tmp);
+	}
+
+	// Copy the elements from r back into s
+	while(!r.isEmpty()) {
+		s.push(r.pop());
+	}
+}

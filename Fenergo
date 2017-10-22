@@ -1,0 +1,41 @@
+- Can you explain what Babel is and why would I use it? 
+Babel is a essentially an ES6 to ES5 transpiler. Or for the purposes of somewhat future-proofing this answer - ESNext to ES”current” transpiler.In short - it allows you to use language features “from the future”. It does so by transpiling your code to the currently supported version of JavaScript.
+
+- Can you describe what a Unit Test is and how it differs from an integration test. 
+-->Unit Testing
+Unit testing is the practice of testing small pieces of code, typically individual functions, alone and isolated. If your test uses some external resource, like the network or a database, it’s not a unit test.
+-->Integration Testing
+As the name suggests, in integration testing the idea is to test how parts of the system work together – the integration of the parts. Integration tests are similar to unit tests, but there’s one big difference: while unit tests are isolated from other components, integration tests are not. For example, a unit test for database access would not talk to a real database, but an integration test would.
+
+-What should a good unit test do? 
+When should you use unit testing? Ideally all the time, by applying test-driven development. A good set of unit tests do not only prevent bugs, but also improve your code design, and make sure you can later refactor your code without everything completely breaking apart.
+
+-What should a unit test not do?
+If you need to test two separate systems together, or if a piece of code is too complex to unit test
+
+-What does "attaching an event handler" mean and what do you need to consider when you do it?
+The addEventListener() method attaches an event handler to an element without overwriting existing event handlers. You can add many event handlers to one element. You can add many event handlers of the same type to one element, i.e two "click" events.
+https://api.jquery.com/category/events/event-handler-attachment/
+
+-Describe the difference between Browser Sniffing and Feature Detection. Which is better and why?
+-->Feature Detection
+Feature detection is just a way of determining if a feature exists in certain browsers. A good example is a modern HTML5 feature ‘Location’.
+if (navigator.geolocation) {
+ // detect users location here B-) and do something awesome
+}
+-->Browser Sniffing
+UA String or User Agent String is a string text of data that each browsers send and can be access via navigator.userAgent. These “string text of data” contains information of the browser environment you are targeting.
+
+Why Feature Detection
+The userAgent string can be faked pretty easily, and while this reason is quoted quite often, it seems the least relevant because the only people that would fake that string are people who know what they are doing and would probably expect that changing that value might create problems.
+You cannot know which features future browsers will provide, so the moment a browser is developed that changes the features in a way that you don’t predict, your script is broken.
+You have to know which browsers support which features. Sometimes this is very simple when it comes to a feature that everyone knows about, but it’s difficult to use when you need to keep track of several features.
+
+-What's a transpiler and a polyfill
+Both approaches serve the same purpose: You can write code, that uses some features, which are not yet implemented in your target environment. They do this, however, by using different techniques.
+-->A polyfill will try to emulate certain APIs, so you can use them as if they were already implemented.
+-->A transpiler on the other hand will transform your code and replace the respective code section by other code, which can already be executed.
+Typically you use a polyfill, if your target browser did not yet implement the latest bleeding edge feature (read browser APIs) you want to use.A transpiler on the other hand will let you use language features, the target environment does not support yet, e.g. some ES6 features like fat arrow functions.
+
+-What is Hoisting in JavaScript?
+Hoisting means that variable and function declarations are processed before any code is executed
